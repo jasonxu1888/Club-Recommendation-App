@@ -1,0 +1,6 @@
+src/clubrec/.venv/
+src/clubrec/app/__pycache__/
+src/clubrec/app.yaml
+src/.venv
+app.yaml
+v.env
