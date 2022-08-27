@@ -1,0 +1,19 @@
+runtime: python310
+
+instance_class: F1
+
+env_variables:
+  MYSQL_USER: 'root'
+  MYSQL_PASSWORD: '@NJ12345'
+  MYSQL_DB: 'clubrecommendation'
+  MYSQL_HOST: 'localhost'
+
+handlers:
+- url: /img
+  static_dir: static/img
+
+- url: /script
+  secure: static/script
+
+- url: /styles
+  static_dir: static/styles

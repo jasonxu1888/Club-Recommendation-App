@@ -1,0 +1,135 @@
+<!--TODO, take a look a the other .html files for guidance, especially the index.html which is for the student table.
+The database.py and routes.py backend functions for Club Membership table should already be done
+-->
+<!DOCTYPE html>
+
+<html>
+    
+      
+    <head>
+        <title>Club Membership</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="{{ url_for('static', filename='img/cs.ico') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+        <link rel="stylesheet" href="thing.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    </head>
+
+    <body>
+        <!-- <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
+            <h3 class="w3-bar-item">Menu</h3>
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+          </div> -->
+    <main role="main" class="container extra-bottom">
+      <h1 class="mt-5">Club Recommendation</h1>
+    </main>
+    
+
+    <div class="container">    
+        
+        <!-- Button trigger modal -->
+        <div style="text-align: right;">
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Student">Add Club</button>
+        <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{club}}" data-content="{{club.club_name}} {{club.club_age}} {{club.club_desc}} "><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+
+    </div>
+
+        
+        <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label">Add Club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">Club Name</span>
+                    <input type="text" class="form-control-clubname" placeholder="Club Name" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">Club Age</span>
+                    <input type="text" class="form-control-clubage" placeholder="Club Age" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">ClubDesc</span>
+                    <input type="text" class="form-control-clubdesc" placeholder="ClubDesc" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="submit-task" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <!--Todo Table-->
+    <div class="container table-responsive"> 
+    <button onclick="location.href='index.html'" type="button">
+            HomePage</button>
+    <button onclick="location.href='bachelor.html'" type="button">
+            BachelorPage</button>
+    <button onclick="location.href='search.html'" type="button">
+                ActivitiesPage</button>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th class="task-id">Club Name</th>
+            <th class="task">Club Age</th>
+            <th class="status">Club DESC</th>
+            <th class="status">Club DESC</th>
+            <th class="status">Club DESC</th>
+            <th class="update">Remove</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for club in club_list %}
+            <tr>
+                <td>{{club.club_name}}</td>
+                <td>{{club.club_age}}</td>
+                <td>{{club.club_desc}}</td>
+                <td>{{club.club_desc}}</td>
+                <td>{{club.club_desc}}</td>
+
+
+                <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{student.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+            <p class="text"><small>App developed for CS411 UIUC by @UniqueTeamName</small></p>
+      </div>
+    </footer>
+  </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script/modal.js') }}"></script>
+
+
+</html>
+

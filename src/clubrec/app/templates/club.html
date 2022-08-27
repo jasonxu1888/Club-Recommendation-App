@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Club Recommendation</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="{{ url_for('static', filename='img/cs.ico') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+
+    </head>
+
+    <body>
+
+    <main role="main" class="container extra-bottom">
+      <h1 class="mt-5">Club Recommendation</h1>
+    </main>
+    
+    <!-- Button for searching clubs by description -->
+    <div style="text-align: center;">
+        <input id = "club-description" type="text" placeholder="Club Description Search" aria-describedby="basic-addon1">
+        <button id="submit-club-query" type="button" class="btn btn-primary">Search</button>
+    </div>
+    </div>
+
+    <div class="container">    
+        
+        <!-- Button trigger modal -->
+        <div style="text-align: right;">
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#club-modal" data-source="New Club">Add Club</button>
+        </div>
+        
+        <div class="modal fade" id="club-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label">Add Club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="club-form-display">Club Name</span>
+                    <input type="text" class="form-control-clubname" placeholder="Club Name" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="club-form-display">Club Description</span>
+                    <input type="text" class="form-control-clubdesc" placeholder="Club Description" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="club-form-display">Club Age</span>
+                    <input type="text" class="form-control-clubage" placeholder="Years Since Creation" aria-label="task-status" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="submit-club" type="button" class="btn btn-primary">Save changes</button> <!-- submit-task changed to submit-club -->
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <!--Todo Table-->
+    <div class="container table-responsive">          
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="club-id">Club Id</th>
+            <th class="task">Club Name</th>
+            <th class="status">Club Description</th>
+            <th class="status">Club Age</th>
+
+            <th class="update">Edit</th>
+            <th class="update">Remove</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for club in club_list %}
+            <tr>
+                <td>{{club.club_id}}</td>
+                <td>{{club.club_name}}</td>
+                <td>{{club.club_desc}}</td>
+                <td>{{club.club_age}}</td>                
+                <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#club-modal" data-source="{{club.club_id}}" data-content="{{club.club_name}},,,{{club.club_desc}},,,{{club.club_age}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+
+                <td><button class="btn btn-outline-secondary btn-sm remove-club" data-source="{{club.club_id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+                <!-- change remove to removeclub -->
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+            <p class="text"><small>App developed for CS411 UIUC by @UniqueTeamName</small></p>
+      </div>
+    </footer>
+  </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script/modal.js') }}"></script>
+
+</html>
